@@ -1,0 +1,27 @@
+@{
+    ViewData["Title"] = "Gönderi Takibi";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8 text-center">
+            
+            <i class="bi bi-search display-1 text-danger opacity-25 mb-3"></i>
+            <h2 class="mb-3 fw-bold text-dark">Kargo Takip Sistemi</h2>
+            <p class="text-muted mb-5">Gönderinizin nerede olduğunu anlık olarak takip etmek için 15 haneli takip numaranızı giriniz.</p>
+            
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-5 bg-white rounded-4">
+                    <form asp-controller="Kargo" asp-action="Sonuc" method="get">
+                        <div class="input-group input-group-lg shadow-sm rounded-3">
+                            <span class="input-group-text bg-white border-end-0 px-4"><i class="bi bi-box-seam text-danger"></i></span>
+                            <input type="text" name="takipNo" class="form-control border-start-0 border-end-0 ps-0" placeholder="Örn: TR999999" required maxlength="15" autocomplete="off" />
+                            <button type="submit" class="btn btn-dark px-5 fw-bold">Sorgula</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

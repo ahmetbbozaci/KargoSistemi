@@ -1,0 +1,100 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<style>
+   
+    .feature-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-bottom: 4px solid transparent;
+    }
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 1rem 3rem rgba(0,0,0,.15) !important;
+        border-bottom: 4px solid #dc3545; 
+    }
+</style>
+
+<div class="position-relative bg-light" style="min-height: 450px; background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center pt-5">
+            
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold text-dark mb-3">Merkez Kargo Lojistik Ağı</h1>
+                <p class="lead text-muted">Gönderi takibi, tahmini ücret hesaplama ve şube lokasyon sorgulama işlemlerinizi bu panel üzerinden gerçekleştirebilirsiniz.</p>
+            </div>
+
+            <div class="col-lg-5 offset-lg-1 position-relative" style="z-index: 10;">
+                <div class="card shadow-lg border-0 rounded-4 mt-4 mt-lg-0" style="transform: translateY(30px);">
+                    <div class="card-body p-5">
+                        <h4 class="fw-bold mb-4">Gönderi Takibi</h4>
+                        <form asp-controller="Kargo" asp-action="Sonuc" method="get">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text bg-white border-end-0"><i class="bi bi-geo-alt text-muted"></i></span>
+                                <input type="text" name="takipNo" class="form-control form-control-lg border-start-0 ps-0" placeholder="Kargo Takip Numaranız" required maxlength="15">
+                            </div>
+                            <div class="d-grid mt-4">
+                                <button type="submit" class="btn btn-dark btn-lg fw-bold rounded-3">Sorgula</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container py-5 mt-5">
+    
+    <div class="row mb-5 text-center mt-3">
+        <div class="col-12">
+            <h3 class="fw-bold text-dark mb-2">Gönderi Yönetim Seçenekleri</h3>
+            <p class="text-muted">Dijital altyapımız sayesinde kargonuzun kontrolü tamamen sizde.</p>
+            <div class="mx-auto bg-danger rounded" style="height: 3px; width: 60px;"></div>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+        
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center feature-card bg-white">
+                <div class="mb-4 mt-2">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-light rounded-circle" style="width: 70px; height: 70px;">
+                        <i class="bi bi-signpost-split display-6 text-danger"></i>
+                    </div>
+                </div>
+                <h5 class="fw-bold text-dark">Adres Güncelleme</h5>
+                <p class="text-muted small mb-4">Gönderiniz yola çıkmış olsa dahi, teslimat adresini panel üzerinden değiştirerek paketinizi farklı bir noktadan teslim alabilirsiniz.</p>
+                <a href="#" class="text-danger fw-bold text-decoration-none small mt-auto pb-2">Hemen İncele <i class="bi bi-chevron-right ms-1"></i></a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center feature-card bg-white">
+                <div class="mb-4 mt-2">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-light rounded-circle" style="width: 70px; height: 70px;">
+                        <i class="bi bi-pin-map display-6 text-danger"></i>
+                    </div>
+                </div>
+                <h5 class="fw-bold text-dark">Aşama Aşama Takip</h5>
+                <p class="text-muted small mb-4">Gönderinizin hangi transfer merkezinde veya şubede olduğunu durak durak takip edebilir, tahmini teslim süresini anlık görebilirsiniz.</p>
+                <a href="#" class="text-danger fw-bold text-decoration-none small mt-auto pb-2">Hemen İncele <i class="bi bi-chevron-right ms-1"></i></a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center feature-card bg-white">
+                <div class="mb-4 mt-2">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-light rounded-circle" style="width: 70px; height: 70px;">
+                        <i class="bi bi-clock-history display-6 text-danger"></i>
+                    </div>
+                </div>
+                <h5 class="fw-bold text-dark">Esnek Teslimat Zamanı</h5>
+                <p class="text-muted small mb-4">Adreste bulunamayacağınız durumlarda, teslimat gününü veya saatini programınıza uygun olacak şekilde yeniden planlayabilirsiniz.</p>
+                <a href="#" class="text-danger fw-bold text-decoration-none small mt-auto pb-2">Hemen İncele <i class="bi bi-chevron-right ms-1"></i></a>
+            </div>
+        </div>
+
+    </div>
+</div>

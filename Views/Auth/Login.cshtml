@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "Kurumsal Giriş";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6 col-lg-5">
+            
+            <div class="text-center mb-4">
+                <i class="bi bi-shield-lock-fill display-4 text-danger mb-2"></i>
+                <h3 class="fw-bold text-dark">Personel Girişi</h3>
+                <p class="text-muted small">Lütfen sicil numaranız ve şifrenizle sisteme giriş yapınız.</p>
+            </div>
+
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4 p-md-5 bg-white rounded-top-4">
+                    
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger text-center fw-bold shadow-sm py-2 mb-4 rounded-3">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i> @ViewBag.Error
+                        </div>
+                    }
+                    
+                    <form method="post" asp-controller="Auth" asp-action="Login">
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-secondary small text-uppercase">Kullanıcı Adı / Sicil No</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="bi bi-person-fill text-muted"></i></span>
+                                <input type="text" name="username" class="form-control form-control-lg bg-light border-start-0" placeholder="Örn: admin" required autocomplete="off">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-secondary small text-uppercase">Parola</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="bi bi-lock-fill text-muted"></i></span>
+                                <input type="password" name="password" class="form-control form-control-lg bg-light border-start-0" placeholder="••••••••" required>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid mt-5">
+                            <button type="submit" class="btn btn-danger btn-lg fw-bold rounded-3">Oturum Aç</button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="card-footer border-0 bg-light text-center py-3 rounded-bottom-4">
+                    <small class="text-muted" style="font-size: 0.75rem;">
+                        <i class="bi bi-info-circle me-1"></i>Güvenlik uyarısı: Tüm yetkisiz erişim denemeleri IP adresi ile loglanmaktadır.
+                    </small>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a asp-controller="Home" asp-action="Index" class="text-decoration-none text-muted small">
+                    <i class="bi bi-arrow-left me-1"></i>Ana Sayfaya Dön
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>

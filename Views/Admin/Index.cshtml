@@ -1,0 +1,66 @@
+@{
+    ViewData["Title"] = "Gösterge Paneli";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; // Personel iskeletini kullanmasını söylüyoruz
+}
+
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0 bg-primary text-white h-100">
+            <div class="card-body">
+                <h6 class="card-title text-uppercase text-white-50">Günlük Toplam Gönderi</h6>
+                <h2 class="display-5 fw-bold mb-0">142 <small class="fs-6">Adet</small></h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0 bg-success text-white h-100">
+            <div class="card-body">
+                <h6 class="card-title text-uppercase text-white-50">Günlük Toplam Gelir</h6>
+                <h2 class="display-5 fw-bold mb-0">₺18.450</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0 bg-dark text-white h-100">
+            <div class="card-body">
+                <h6 class="card-title text-uppercase text-white-50">En Çok Kullanılan Hat</h6>
+                <h2 class="display-6 fw-bold mb-0">Ankara - İstanbul</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm border-0">
+    <div class="card-header bg-white py-3">
+        <h5 class="mb-0 fw-bold">Son İşlem Gören Kargolar</h5>
+    </div>
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Takip No</th>
+                    <th>Gönderici</th>
+                    <th>Alıcı</th>
+                    <th>Çıkış Şubesi</th>
+                    <th>Durum</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="badge bg-secondary">TR849201</span></td>
+                    <td>Ahmet Yılmaz</td>
+                    <td>Mehmet Demir</td>
+                    <td>Ankara Merkez</td>
+                    <td><span class="text-primary fw-bold">Yolda</span></td>
+                </tr>
+                <tr>
+                    <td><span class="badge bg-secondary">TR849202</span></td>
+                    <td>Ayşe Kaya</td>
+                    <td>Fatma Çelik</td>
+                    <td>İstanbul Avrupa</td>
+                    <td><span class="text-success fw-bold">Teslim Edildi</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

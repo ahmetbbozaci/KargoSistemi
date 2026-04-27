@@ -1,0 +1,97 @@
+@{
+    ViewData["Title"] = "Takip Sonucu";
+}
+
+<style>
+  
+    .tracking-timeline { position: relative; padding-left: 2rem; }
+    .tracking-timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: #e9ecef; }
+    .timeline-item { position: relative; margin-bottom: 1.5rem; }
+    .timeline-icon { position: absolute; left: -2.6rem; top: 0; width: 20px; height: 20px; border-radius: 50%; background: #fff; border: 3px solid #dc3545; }
+    .timeline-icon.completed { background: #dc3545; }
+</style>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h3 class="fw-bold mb-0">Gönderi Hareketleri</h3>
+                    <p class="text-muted mb-0">Takip No: <strong class="text-dark">@ViewBag.TakipNo</strong></p>
+                </div>
+                <a asp-action="Index" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Yeni Sorgu</a>
+            </div>
+
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-body p-4 p-md-5">
+                    
+                    <div class="d-flex align-items-center mb-5 border-bottom pb-4">
+                        <i class="bi bi-check-circle-fill text-success display-6 me-3"></i>
+                        <div>
+                            <h4 class="text-success fw-bold mb-0">Teslim Edildi</h4>
+                            <small class="text-muted">Gönderiniz alıcısına ulaştırılmıştır.</small>
+                        </div>
+                    </div>
+
+                    <div class="tracking-timeline mt-4">
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon completed"></div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <h6 class="fw-bold mb-1">Teslim Edildi</h6>
+                                    <p class="text-muted small mb-0">Kargo alıcısına teslim edilmiştir.</p>
+                                </div>
+                                <div class="col-sm-4 text-sm-end mt-2 mt-sm-0">
+                                    <span class="badge bg-light text-dark border">Bugün - 14:30</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-icon completed"></div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <h6 class="fw-bold mb-1">Dağıtıma Çıktı</h6>
+                                    <p class="text-muted small mb-0">Ankara Merkez Şube kuryesi dağıtıma çıkardı.</p>
+                                </div>
+                                <div class="col-sm-4 text-sm-end mt-2 mt-sm-0">
+                                    <span class="badge bg-light text-dark border">Bugün - 09:15</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-icon completed"></div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <h6 class="fw-bold mb-1">Transfer Merkezinde</h6>
+                                    <p class="text-muted small mb-0">Ankara Bölge Aktarma Merkezine ulaştı.</p>
+                                </div>
+                                <div class="col-sm-4 text-sm-end mt-2 mt-sm-0">
+                                    <span class="badge bg-light text-dark border">Dün - 23:45</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-icon completed"></div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <h6 class="fw-bold mb-1">Şubeden Çıktı</h6>
+                                    <p class="text-muted small mb-0">İstanbul Dağıtım Merkezi şubesinden araca yüklendi.</p>
+                                </div>
+                                <div class="col-sm-4 text-sm-end mt-2 mt-sm-0">
+                                    <span class="badge bg-light text-dark border">Dün - 18:00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+            </div>
+
+        </div>
+    </div>
+</div>

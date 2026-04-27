@@ -1,0 +1,150 @@
+@{
+    ViewData["Title"] = "Şubelerimiz";
+}
+
+<style>
+    .kargo-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .kargo-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 1rem 3rem rgba(0,0,0,.175) !important;
+    }
+    .icon-box {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<div class="container py-5">
+    
+    <div class="row mb-5 text-center">
+        <div class="col-12">
+            <h2 class="fw-bold text-dark mb-3">Hizmet Noktalarımız</h2>
+            <p class="text-muted lead">Merkez Kargo olarak 5 ana bölge şubemizle hizmetinizdeyiz.</p>
+            <div class="mx-auto bg-danger rounded" style="height: 4px; width: 60px;"></div>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
+        
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0 rounded-4 kargo-card">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-light rounded-circle icon-box me-3 text-danger">
+                            <i class="bi bi-geo-alt-fill fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-0">Ankara Merkez</h5>
+                            <small class="text-muted">İç Anadolu Bölge Müd.</small>
+                        </div>
+                    </div>
+                    <p class="card-text text-secondary mb-2" style="font-size: 0.95rem;">
+                        <i class="bi bi-building me-2 text-muted"></i>Kızılay Mah. GMK Bulvarı No:12, Çankaya/Ankara
+                    </p>
+                    <hr class="text-light opacity-50">
+                    <p class="card-text fw-bold text-dark mb-0">
+                        <i class="bi bi-telephone-fill text-danger me-2"></i>0312 555 01 01
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0 rounded-4 kargo-card">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-light rounded-circle icon-box me-3 text-danger">
+                            <i class="bi bi-geo-alt-fill fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-0">İstanbul Avrupa</h5>
+                            <small class="text-muted">Marmara Bölge Müd.</small>
+                        </div>
+                    </div>
+                    <p class="card-text text-secondary mb-2" style="font-size: 0.95rem;">
+                        <i class="bi bi-building me-2 text-muted"></i>Esentepe Mah. Büyükdere Cad. No:45, Şişli/İstanbul
+                    </p>
+                    <hr class="text-light opacity-50">
+                    <p class="card-text fw-bold text-dark mb-0">
+                        <i class="bi bi-telephone-fill text-danger me-2"></i>0212 555 01 02
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0 rounded-4 kargo-card">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-light rounded-circle icon-box me-3 text-danger">
+                            <i class="bi bi-geo-alt-fill fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-0">Adana Çukurova</h5>
+                            <small class="text-muted">Akdeniz Bölge Müd.</small>
+                        </div>
+                    </div>
+                    <p class="card-text text-secondary mb-2" style="font-size: 0.95rem;">
+                        <i class="bi bi-building me-2 text-muted"></i>Mahfesığmaz Mah. Turgut Özal Blv. No:78, Çukurova/Adana
+                    </p>
+                    <hr class="text-light opacity-50">
+                    <p class="card-text fw-bold text-dark mb-0">
+                        <i class="bi bi-telephone-fill text-danger me-2"></i>0322 555 01 03
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0 rounded-4 kargo-card">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-light rounded-circle icon-box me-3 text-danger">
+                            <i class="bi bi-geo-alt-fill fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-0">Kahramanmaraş</h5>
+                            <small class="text-muted">Doğu Akdeniz Dağıtım</small>
+                        </div>
+                    </div>
+                    <p class="card-text text-secondary mb-2" style="font-size: 0.95rem;">
+                        <i class="bi bi-building me-2 text-muted"></i>İsmetpaşa Mah. Trabzon Bulvarı No:90, Dulkadiroğlu/K.Maraş
+                    </p>
+                    <hr class="text-light opacity-50">
+                    <p class="card-text fw-bold text-dark mb-0">
+                        <i class="bi bi-telephone-fill text-danger me-2"></i>0344 555 01 04
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0 rounded-4 kargo-card">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-light rounded-circle icon-box me-3 text-danger">
+                            <i class="bi bi-geo-alt-fill fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-0">Hatay Antakya</h5>
+                            <small class="text-muted">Güney Dağıtım Merkezi</small>
+                        </div>
+                    </div>
+                    <p class="card-text text-secondary mb-2" style="font-size: 0.95rem;">
+                        <i class="bi bi-building me-2 text-muted"></i>Cumhuriyet Mah. Atatürk Caddesi No:34, Antakya/Hatay
+                    </p>
+                    <hr class="text-light opacity-50">
+                    <p class="card-text fw-bold text-dark mb-0">
+                        <i class="bi bi-telephone-fill text-danger me-2"></i>0326 555 01 05
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
