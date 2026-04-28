@@ -1,0 +1,139 @@
+@{
+    ViewData["Title"] = "Yeni Kullanıcı Tanımlama";
+}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-8 col-lg-7">
+        <div class="card shadow border-0 rounded-3">
+            
+            <div class="card-header bg-dark text-white p-3 border-0 rounded-top-3">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-person-badge-fill fs-3 me-3 text-primary"></i>
+                    <div>
+                        <h4 class="mb-0 fw-bold">Yeni Kullanıcı Kaydı</h4>
+                        <small class="text-muted" style="color: #adb5bd !important;">Sisteme yeni bir kullanıcı profili tanımlayın.</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-body p-4 p-md-5">
+                
+                @if (ViewBag.Hata != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show rounded-pill" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i> @ViewBag.Hata
+                        <button type="submit" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                <form asp-action="PersonelEkle" method="post" class="needs-validation">
+                    
+                    <div class="form-group mb-4">
+                        <label class="form-label fw-bold text-muted">
+                            <i class="bi bi-person me-2"></i> Kullanıcı Adı
+                        </label>
+                        <input type="text" name="kullaniciAdi" class="form-control rounded-pill-custom fs-6" placeholder="Örn: ankara_mudur, kurye1" required>
+                        <div class="form-text ms-2 text-muted-50">Sistemde benzersiz olmalıdır.</div>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label class="form-label fw-bold text-muted">
+                            <i class="bi bi-shield-lock me-2"></i> Giriş Şifresi
+                        </label>
+                        <input type="password" name="sifre" class="form-control rounded-pill-custom fs-6" placeholder="Güçlü bir şifre belirleyin" required>
+                    </div>
+
+                    <div class="form-group mb-5">
+                        <label class="form-label fw-bold text-muted d-block mb-3">
+                            <i class="bi bi-briefcase me-2"></i> Görevlendirilecek Pozisyon
+                        </label>
+                        
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="radio" class="btn-check" name="rol" id="rolMudur" value="Mudur" required>
+                                <label class="btn btn-outline-primary w-100 h-100 p-3 text-start rounded-4 custom-radio-card" for="rolMudur">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="bi bi-building-gear fs-3 me-3"></i>
+                                        <h5 class="fw-bold mb-0">Şube Yöneticisi</h5>
+                                    </div>
+                                    <small class="d-block card-desc">Şube içi raporlama, personel yönetimi ve sistem izleme yetkilerine sahiptir.</small>
+                                </label>
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="radio" class="btn-check" name="rol" id="rolPersonel" value="Personel" required>
+                                <label class="btn btn-outline-secondary w-100 h-100 p-3 text-start rounded-4 custom-radio-card" for="rolPersonel">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="bi bi-box-seam fs-3 me-3"></i>
+                                        <h5 class="fw-bold mb-0">Operasyon Personeli</h5>
+                                    </div>
+                                    <small class="d-block card-desc">Kargo kabulü, durum güncelleme ve günlük teslimat operasyonlarını yürütür.</small>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg rounded-pill fw-bold">
+                            <i class="bi bi-save me-2"></i> Kullanıcıyı Sisteme Tanımla
+                        </button>
+                        <a asp-controller="Admin" asp-action="Index" class="btn btn-link text-muted mt-2 text-center text-decoration-none">
+                            İptal Et ve Geri Dön
+                        </a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .rounded-pill-custom {
+        border-radius: 2rem !important;
+        padding-left: 1.5rem !important;
+        border: 2px solid #e2e8f0;
+    }
+    
+    .form-control:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
+    }
+    
+    .form-text {
+        font-size: 0.8rem;
+    }
+    
+    .text-muted {
+        color: #6c757d;
+    }
+
+    /* Toggle kartların estetik ayarları */
+    .custom-radio-card {
+        border-width: 2px;
+        transition: all 0.2s ease-in-out;
+    }
+    
+    .custom-radio-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    .btn-check:checked + .btn-outline-primary {
+        background-color: #0d6efd;
+        color: white !important;
+        border-color: #0d6efd;
+    }
+    .btn-check:checked + .btn-outline-primary .card-desc {
+        color: #e9ecef !important;
+    }
+    
+    .btn-check:checked + .btn-outline-secondary {
+        background-color: #6c757d;
+        color: white !important;
+        border-color: #6c757d;
+    }
+    .btn-check:checked + .btn-outline-secondary .card-desc {
+        color: #e9ecef !important;
+    }
+</style>
