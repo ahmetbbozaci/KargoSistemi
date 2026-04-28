@@ -4,7 +4,8 @@ using KargoSistemi.Models;
 using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace KargoSistemi.Controllers
 {
@@ -18,33 +19,48 @@ namespace KargoSistemi.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login() => View();
+        public IActionResult Login()
+        {
+         
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Login(string username, string password)
         {
-            
-            var personel = _context.Personeller
-                .FirstOrDefault(p => p.KullaniciAdi == username && p.SifreHash == password);
+          
+            Personel? personel = _context.Personeller.FirstOrDefault(p => p.KullaniciAdi == username);
 
-            if (personel != null)
+           
+            if (personel != null && BCrypt.Net.BCrypt.Verify(password, personel.SifreHash))
             {
-              
-                var claims = new List<Claim>
+               
+                List<Claim> claims = new List<Claim>();
+                
+                claims.Add(new Claim(ClaimTypes.Name, personel.KullaniciAdi));
+
+                
+                string rol = "Personel";
+                if (personel.Rol != null)
                 {
-                    new Claim(ClaimTypes.Name, personel.KullaniciAdi),
-                    new Claim(ClaimTypes.Role, personel.Rol ?? "Personel"),
-                    new Claim("PersonelId", personel.Id.ToString())
-                };
+                    rol = personel.Rol;
+                }
+                claims.Add(new Claim(ClaimTypes.Role, rol));
+                
+                claims.Add(new Claim("PersonelId", personel.Id.ToString()));
 
-                var claimsIdentity = new ClaimsIdentity(claims, "KargoAuth");
+                // Kimliği oluşturuyoruz
+                ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "KargoAuth");
+                ClaimsPrincipal principal = new ClaimsPrincipal(claimsIdentity);
 
-              
-                await HttpContext.SignInAsync("KargoAuth", new ClaimsPrincipal(claimsIdentity));
+                
+                await HttpContext.SignInAsync("KargoAuth", principal);
 
+                
                 return RedirectToAction("Index", "Admin");
             }
 
+            
             ViewBag.Error = "Kullanıcı adı veya şifre hatalı!";
             return View();
         }
@@ -54,6 +70,8 @@ namespace KargoSistemi.Controllers
         {
             
             await HttpContext.SignOutAsync("KargoAuth");
+            
+            
             return RedirectToAction("Login", "Auth");
         }
     }

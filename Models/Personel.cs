@@ -8,11 +8,11 @@ namespace KargoSistemi.Models
         public int Id { get; set; }
 
         [Required] 
-        public string KullaniciAdi { get; set; }
+        public string KullaniciAdi { get; set; } = "";
 
         [Required]
-        public string SifreHash { get; set; } 
+        public string SifreHash { get; set; } = "";
 
-        public string Rol { get; set; } 
+        public string Rol { get; set; } = "";
     }
 }
