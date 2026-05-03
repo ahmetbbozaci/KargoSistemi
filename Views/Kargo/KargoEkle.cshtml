@@ -1,0 +1,94 @@
+@{
+    ViewData["Title"] = "Yeni Kargo Kabul";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-end mb-4 pb-2 border-bottom">
+    <div>
+        <h3 class="fw-bold mb-2" style="color: #1a2b3c;"><i class="bi bi-box-seam me-2"></i>Kargo Kabul İşlemleri</h3>
+        <span class="text-muted">Şubeye gelen yeni kargoları sisteme kaydedin.</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-body p-4">
+                
+                @if (TempData["Mesaj"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show rounded-pill mb-4" role="alert">
+                        <i class="bi bi-check-circle-fill me-2"></i> @TempData["Mesaj"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                @if (ViewBag.Hata != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show rounded-pill mb-4" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i> @ViewBag.Hata
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                <form asp-action="KargoEkle" method="post">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold text-muted small">Gönderici Müşteri No (ID)</label>
+                            <input type="number" name="gondericiId" class="form-control rounded-3" placeholder="Örn: 105" required>
+                        </div>
+                        <div class="col-md-6 mt-3 mt-md-0">
+                            <label class="form-label fw-bold text-muted small">Alıcı Müşteri No (ID)</label>
+                            <input type="number" name="aliciId" class="form-control rounded-3" placeholder="Örn: 248" required>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold text-muted small">Ağırlık (kg)</label>
+                            <input type="number" step="0.1" name="agirlik" class="form-control rounded-3" placeholder="Örn: 2.5" required>
+                        </div>
+                        <div class="col-md-6 mt-3 mt-md-0">
+                            <label class="form-label fw-bold text-muted small">Boyut</label>
+                            <select class="form-select rounded-3" name="boyut">
+                                <option value="Zarf">Zarf / Dosya</option>
+                                <option value="Kucuk">Küçük Paket</option>
+                                <option value="Orta">Orta Koli</option>
+                                <option value="Buyuk">Büyük Koli</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-muted small">İçerik Türü</label>
+                        <input type="text" name="icerik" class="form-control rounded-3" placeholder="Örn: Evrak, Kırılacak Eşya..." required>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-dark py-2 fw-bold rounded-pill">
+                            <i class="bi bi-save me-2"></i> Kargoyu Sisteme Kaydet
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 col-lg-6 d-none d-md-block">
+        <div class="alert alert-light border shadow-sm p-4 h-100 d-flex flex-column">
+            <h5 class="fw-bold text-dark"><i class="bi bi-info-circle text-primary me-2"></i>İşlem Rehberi</h5>
+            <hr>
+            <ul class="text-muted small lh-lg mb-4">
+                <li><strong>Önemli:</strong> Gönderici veya alıcı sistemde kayıtlı değilse, kargo eklemeden önce müşteri kaydı oluşturulmalıdır.</li>
+                <li>Ağırlık ve boyut bilgilerine göre kargo ücreti sistem tarafından otomatik hesaplanacaktır.</li>
+                <li>Kaydedilen kargolara benzersiz bir "TR-" ile başlayan takip numarası atanır.</li>
+            </ul>
+
+            <div class="mt-auto">
+                <a asp-controller="Musteri" asp-action="MusteriEkle" class="btn btn-outline-primary btn-sm w-100 fw-bold rounded-pill py-2">
+                    <i class="bi bi-person-plus-fill me-2"></i>Yeni Müşteri Kaydı Yap
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

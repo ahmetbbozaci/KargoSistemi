@@ -1,0 +1,98 @@
+@model KargoSistemi.Models.Musteri
+@{
+    ViewData["Title"] = "Yeni Müşteri Kaydı";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-end mb-4 pb-2 border-bottom">
+    <div>
+        <h3 class="fw-bold mb-2" style="color: #1a2b3c;"><i class="bi bi-person-plus me-2"></i>Müşteri Kayıt Paneli</h3>
+        <span class="text-muted">ER Diyagramı standartlarına uygun müşteri tanımlama ekranı.</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-lg-7">
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-body p-4">
+                
+                @if (TempData["Mesaj"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show rounded-pill mb-4" role="alert">
+                        <i class="bi bi-check-circle-fill me-2"></i> @TempData["Mesaj"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                <form asp-action="MusteriEkle" method="post">
+                    <!-- İsim ve Soyisim (ERD: Customer_name, Customer_lastname) -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small text-muted">Ad</label>
+                            <input asp-for="Customer_name" class="form-control rounded-3" placeholder="Örn: Burak" required>
+                            <span asp-validation-for="Customer_name" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6 mt-3 mt-md-0">
+                            <label class="form-label fw-bold small text-muted">Soyad</label>
+                            <input asp-for="Customer_lastname" class="form-control rounded-3" placeholder="Örn: Yılmaz" required>
+                            <span asp-validation-for="Customer_lastname" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <!-- İletişim Bilgileri -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small text-muted">Telefon (Sadece Rakam)</label>
+                            <input asp-for="Phone_number" type="tel" class="form-control rounded-3" placeholder="5XXXXXXXXX" required>
+                            <span asp-validation-for="Phone_number" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6 mt-3 mt-md-0">
+                            <label class="form-label fw-bold small text-muted">Şehir (City)</label>
+                            <input asp-for="City" class="form-control rounded-3" placeholder="Örn: Adana">
+                        </div>
+                    </div>
+
+                    <!-- Detaylı Adres (ERD: Town, Neighbourhood, Street) -->
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold small text-muted">İlçe</label>
+                            <input asp-for="Town" class="form-control rounded-3" placeholder="İlçe">
+                        </div>
+                        <div class="col-md-4 mt-3 mt-md-0">
+                            <label class="form-label fw-bold small text-muted">Mahalle</label>
+                            <input asp-for="Neighbourhood" class="form-control rounded-3" placeholder="Mahalle">
+                        </div>
+                        <div class="col-md-4 mt-3 mt-md-0">
+                            <label class="form-label fw-bold small text-muted">Sokak/No</label>
+                            <input asp-for="Street" class="form-control rounded-3" placeholder="Sokak/Kapı No">
+                        </div>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-dark py-2 fw-bold rounded-pill shadow-sm">
+                            <i class="bi bi-cloud-arrow-up me-2"></i>Müşteriyi Veritabanına İşle
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Yan Bilgi Paneli -->
+    <div class="col-md-4 col-lg-5 d-none d-md-block">
+        <div class="alert alert-light border shadow-sm p-4 h-100">
+            <h5 class="fw-bold text-dark"><i class="bi bi-diagram-3 text-primary me-2"></i>Veri Mimarisi</h5>
+            <hr>
+            <p class="small text-muted">Bu formdaki alanlar doğrudan <strong>Customers</strong> tablosuyla eşleşmektedir:</p>
+            <ul class="text-muted small lh-lg">
+                <li>Telefon numarası için sunucu taraflı <strong>Regex</strong> doğrulaması etkindir.</li>
+                <li>Adres bilgileri, kargo ücreti hesaplanırken (mesafe bazlı) kullanılacaktır.</li>
+                <li>Kaydedilen her müşteriye benzersiz bir <code>Customer_ID</code> atanır.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

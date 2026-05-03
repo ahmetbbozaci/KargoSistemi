@@ -3,15 +3,15 @@
 }
 
 <div class="row justify-content-center mt-4">
-    <div class="col-md-8 col-lg-7">
+    <div class="col-md-10 col-lg-9">
         <div class="card shadow border-0 rounded-3">
             
             <div class="card-header bg-dark text-white p-3 border-0 rounded-top-3">
                 <div class="d-flex align-items-center">
-                    <i class="bi bi-person-badge-fill fs-3 me-3 text-primary"></i>
+                    <i class="bi bi-person-badge-fill fs-3 me-3 text-light"></i>
                     <div>
                         <h4 class="mb-0 fw-bold">Yeni Kullanıcı Kaydı</h4>
-                        <small class="text-muted" style="color: #adb5bd !important;">Sisteme yeni bir kullanıcı profili tanımlayın.</small>
+                        <small class="text-muted" style="color: #adb5bd !important;">Sisteme yeni bir personel profili tanımlayın.</small>
                     </div>
                 </div>
             </div>
@@ -28,58 +28,76 @@
 
                 <form asp-action="PersonelEkle" method="post" class="needs-validation">
                     
-                    <div class="form-group mb-4">
-                        <label class="form-label fw-bold text-muted">
-                            <i class="bi bi-person me-2"></i> Kullanıcı Adı
-                        </label>
-                        <input type="text" name="kullaniciAdi" class="form-control rounded-pill-custom fs-6" placeholder="Örn: ankara_mudur, kurye1" required>
-                        <div class="form-text ms-2 text-muted-50">Sistemde benzersiz olmalıdır.</div>
+                    <div class="row mb-4">
+                        <div class="col-md-6 form-group">
+                            <label class="form-label fw-bold text-muted">
+                                <i class="bi bi-person me-2"></i> Kullanıcı Adı
+                            </label>
+                            <input type="text" name="kullaniciAdi" class="form-control rounded-pill-custom fs-6" placeholder="Örn: adana_gise, burak_kurye" required>
+                            <div class="form-text ms-2 mt-1">Sistemde benzersiz olmalıdır.</div>
+                        </div>
+
+                        <div class="col-md-6 form-group mt-3 mt-md-0">
+                            <label class="form-label fw-bold text-muted">
+                                <i class="bi bi-shield-lock me-2"></i> Giriş Şifresi
+                            </label>
+                            <input type="password" name="sifre" class="form-control rounded-pill-custom fs-6" placeholder="Güçlü bir şifre belirleyin" required>
+                        </div>
                     </div>
 
-                    <div class="form-group mb-4">
-                        <label class="form-label fw-bold text-muted">
-                            <i class="bi bi-shield-lock me-2"></i> Giriş Şifresi
-                        </label>
-                        <input type="password" name="sifre" class="form-control rounded-pill-custom fs-6" placeholder="Güçlü bir şifre belirleyin" required>
-                    </div>
-
-                    <div class="form-group mb-5">
+                    <div class="form-group mb-5 mt-4">
                         <label class="form-label fw-bold text-muted d-block mb-3">
                             <i class="bi bi-briefcase me-2"></i> Görevlendirilecek Pozisyon
                         </label>
                         
                         <div class="row g-3">
-                            <div class="col-md-6">
+                            <!-- Şube Yöneticisi -->
+                            <div class="col-md-4">
                                 <input type="radio" class="btn-check" name="rol" id="rolMudur" value="Mudur" required>
-                                <label class="btn btn-outline-primary w-100 h-100 p-3 text-start rounded-4 custom-radio-card" for="rolMudur">
+                                <label class="btn btn-outline-corporate w-100 h-100 p-3 text-start rounded-4 custom-radio-card" for="rolMudur">
                                     <div class="d-flex align-items-center mb-2">
-                                        <i class="bi bi-building-gear fs-3 me-3"></i>
-                                        <h5 class="fw-bold mb-0">Şube Yöneticisi</h5>
+                                        <i class="bi bi-building-gear fs-3 me-2"></i>
+                                        <h5 class="fw-bold mb-0">Şube Müdürü</h5>
                                     </div>
-                                    <small class="d-block card-desc">Şube içi raporlama, personel yönetimi ve sistem izleme yetkilerine sahiptir.</small>
+                                    <small class="d-block card-desc">Şube raporlama, operasyon takibi ve personel zimmetleme yetkileri.</small>
                                 </label>
                             </div>
 
-                            <div class="col-md-6">
-                                <input type="radio" class="btn-check" name="rol" id="rolPersonel" value="Personel" required>
-                                <label class="btn btn-outline-secondary w-100 h-100 p-3 text-start rounded-4 custom-radio-card" for="rolPersonel">
+                            <!-- Gişe Personeli -->
+                            <div class="col-md-4">
+                                <input type="radio" class="btn-check" name="rol" id="rolGise" value="Gise" required>
+                                <label class="btn btn-outline-corporate w-100 h-100 p-3 text-start rounded-4 custom-radio-card" for="rolGise">
                                     <div class="d-flex align-items-center mb-2">
-                                        <i class="bi bi-box-seam fs-3 me-3"></i>
-                                        <h5 class="fw-bold mb-0">Operasyon Personeli</h5>
+                                        <i class="bi bi-pc-display fs-3 me-2"></i>
+                                        <h5 class="fw-bold mb-0">Gişe Personeli</h5>
                                     </div>
-                                    <small class="d-block card-desc">Kargo kabulü, durum güncelleme ve günlük teslimat operasyonlarını yürütür.</small>
+                                    <small class="d-block card-desc">Müşteri kaydı, yeni kargo kabulü ve şube içi durum güncellemeleri.</small>
+                                </label>
+                            </div>
+
+                            <!-- Kurye -->
+                            <div class="col-md-4">
+                                <input type="radio" class="btn-check" name="rol" id="rolKurye" value="Kurye" required>
+                                <label class="btn btn-outline-corporate w-100 h-100 p-3 text-start rounded-4 custom-radio-card" for="rolKurye">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="bi bi-truck fs-3 me-2"></i>
+                                        <h5 class="fw-bold mb-0">Dağıtım Kuryesi</h5>
+                                    </div>
+                                    <small class="d-block card-desc">Zimmetli kargo takibi ve adreste teslimat onaylama yetkileri.</small>
                                 </label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="d-grid gap-2 mt-4">
-                        <button type="submit" class="btn btn-primary btn-lg rounded-pill fw-bold">
-                            <i class="bi bi-save me-2"></i> Kullanıcıyı Sisteme Tanımla
-                        </button>
-                        <a asp-controller="Admin" asp-action="Index" class="btn btn-link text-muted mt-2 text-center text-decoration-none">
-                            İptal Et ve Geri Dön
+                    <hr class="text-muted mb-4">
+
+                    <div class="d-flex justify-content-end gap-3">
+                        <a asp-controller="Admin" asp-action="Index" class="btn btn-light rounded-pill fw-bold px-4 py-2 border">
+                            İptal Et
                         </a>
+                        <button type="submit" class="btn btn-dark rounded-pill fw-bold px-5 py-2">
+                            <i class="bi bi-save me-2"></i> Sisteme Tanımla
+                        </button>
                     </div>
 
                 </form>
@@ -93,47 +111,55 @@
         border-radius: 2rem !important;
         padding-left: 1.5rem !important;
         border: 2px solid #e2e8f0;
+        transition: all 0.2s;
     }
     
     .form-control:focus {
-        border-color: #0d6efd;
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
+        border-color: #1a2b3c;
+        box-shadow: 0 0 0 0.25rem rgba(26, 43, 60, 0.1);
     }
     
     .form-text {
         font-size: 0.8rem;
+        color: #85929e;
     }
     
     .text-muted {
-        color: #6c757d;
+        color: #6c757d !important;
     }
 
-    /* Toggle kartların estetik ayarları */
+    /* Kurumsal Toggle Kart Ayarları */
     .custom-radio-card {
         border-width: 2px;
         transition: all 0.2s ease-in-out;
     }
     
     .custom-radio-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.08);
     }
 
-    .btn-check:checked + .btn-outline-primary {
-        background-color: #0d6efd;
-        color: white !important;
-        border-color: #0d6efd;
+    .btn-outline-corporate {
+        border-color: #cbd5e1;
+        color: #475569;
+        background-color: white;
     }
-    .btn-check:checked + .btn-outline-primary .card-desc {
-        color: #e9ecef !important;
+
+    /* Seçildiğinde Tok/Kurumsal Lacivert */
+    .btn-check:checked + .btn-outline-corporate {
+        background-color: #1a2b3c; 
+        border-color: #1a2b3c;
+        color: white !important;
+        box-shadow: 0 4px 10px rgba(26, 43, 60, 0.3);
     }
     
-    .btn-check:checked + .btn-outline-secondary {
-        background-color: #6c757d;
-        color: white !important;
-        border-color: #6c757d;
+    .btn-check:checked + .btn-outline-corporate .card-desc {
+        color: #cbd5e1 !important;
     }
-    .btn-check:checked + .btn-outline-secondary .card-desc {
-        color: #e9ecef !important;
+
+    .card-desc {
+        font-size: 0.85rem;
+        color: #64748b;
+        line-height: 1.4;
     }
 </style>

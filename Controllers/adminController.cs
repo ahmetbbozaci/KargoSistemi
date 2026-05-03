@@ -8,7 +8,10 @@ using System.Linq;
 
 namespace KargoSistemi.Controllers
 {
-    [Authorize] 
+    // ====================================================================
+    // YENİ EKLENEN KISIM: Sadece yaka kartında "Mudur" yazanlar girebilir!
+    // ====================================================================
+    [Authorize(Roles = "Mudur")] 
     public class AdminController : Controller
     {
         private readonly UygulamaDbContext _context; 
@@ -26,21 +29,13 @@ namespace KargoSistemi.Controllers
                 kullaniciAdi = User.Identity.Name;
             }
 
-            string gorunurSubeAdi = "";
+            // Eskiden burada kullanıcı adının sonundaki "_mudur" kelimesini kesip şube adı bulmaya 
+            // çalışıyorduk. Artık veritabanında gerçek bir Şube (Branches) tablomuz olduğu için 
+            // o ilkel (hardcoded) yapıyı kaldırıp şimdilik sadece "Şube Yöneticisi" yazdırıyoruz.
+            // İlerleyen günlerde, yöneticinin ID'sine bakıp veritabanından hangi şubenin müdürü 
+            // olduğunu bulan SQL sorgusunu buraya yazacağız.
+            string gorunurSubeAdi = "Şube Yöneticisi";
 
-            
-            if (kullaniciAdi.Contains("_mudur"))
-            {
-                string sehir = kullaniciAdi.Replace("_mudur", "");
-                
-                gorunurSubeAdi = sehir.ToUpper(new CultureInfo("tr-TR")) + " ŞUBESİ";
-            }
-            else
-            {
-                gorunurSubeAdi = "GENEL MERKEZ";
-            }
-
-            
             ViewBag.AdminAdi = kullaniciAdi;
             ViewBag.SubeAdi = gorunurSubeAdi;
 
@@ -56,14 +51,12 @@ namespace KargoSistemi.Controllers
         [HttpPost]
         public IActionResult PersonelEkle(string kullaniciAdi, string sifre, string rol)
         {
-            
             if (string.IsNullOrEmpty(kullaniciAdi) || string.IsNullOrEmpty(sifre) || string.IsNullOrEmpty(rol))
             {
                 ViewBag.Hata = "Lütfen tüm zorunlu alanları doldurun.";
                 return View();
             }
 
-            
             Personel? mevcutPersonel = _context.Personeller.FirstOrDefault(p => p.KullaniciAdi == kullaniciAdi);
             
             if (mevcutPersonel != null)
@@ -72,20 +65,16 @@ namespace KargoSistemi.Controllers
                 return View();
             }
 
-            
             string hashlenmisSifre = BCrypt.Net.BCrypt.HashPassword(sifre);
 
-            
             Personel yeniPersonel = new Personel();
             yeniPersonel.KullaniciAdi = kullaniciAdi;
             yeniPersonel.SifreHash = hashlenmisSifre; 
             yeniPersonel.Rol = rol;
 
-            
             _context.Personeller.Add(yeniPersonel);
             _context.SaveChanges();
                 
-            
             return RedirectToAction("Index", "Admin"); 
         }
     }

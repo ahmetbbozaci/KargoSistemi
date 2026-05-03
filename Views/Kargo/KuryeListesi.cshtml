@@ -1,0 +1,64 @@
+@{
+    ViewData["Title"] = "Zimmetli Kargolarım";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-end mb-4 pb-2 border-bottom">
+    <div>
+        <h3 class="fw-bold mb-2" style="color: #1a2b3c;"><i class="bi bi-truck me-2"></i>Dağıtım Listem</h3>
+        <span class="text-muted">Bugün size zimmetlenmiş ve dağıtıma çıkmış kargolar.</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0 align-middle">
+                        <thead class="table-light text-muted">
+                            <tr>
+                                <th class="ps-4">Takip No</th>
+                                <th>Teslimat Adresi (İlçe)</th>
+                                <th>Durum</th>
+                                <th class="text-end pe-4">Aksiyon</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Veritabanı bağlantısı öncesi örnek satır -->
+                            <tr>
+                                <td class="ps-4">
+                                    <span class="badge bg-light text-dark border">TR-998877</span>
+                                </td>
+                                <td>
+                                    <div class="fw-medium">Seyhan / Reşatbey Mah.</div>
+                                    <small class="text-muted">Atatürk Cad. No:12 D:4</small>
+                                </td>
+                                <td>
+                                    <span class="badge bg-warning text-dark rounded-pill">Dağıtımda</span>
+                                </td>
+                                <td class="text-end pe-4">
+                                    <button type="button" class="btn btn-sm btn-success fw-bold rounded-pill px-3 shadow-sm">
+                                        <i class="bi bi-check2-circle me-1"></i> Teslim Edildi
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Bozuk metin olarak görünen kısım burasıydı, artık düzgünce gizlendi ve uygulanıyor */
+    .table > :not(caption) > * > * {
+        padding: 1rem 0.5rem !important;
+    }
+    
+    .badge {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+</style>
